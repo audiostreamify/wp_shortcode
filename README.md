@@ -11,6 +11,7 @@ Audiostreamify shortcode allows you to embed songs, albums or playlists.
 *border:*
 
 ``Specify if you want a border around the frame or not``
+
 *Args:*
 1. true 
 2. false
@@ -18,6 +19,7 @@ Audiostreamify shortcode allows you to embed songs, albums or playlists.
 *theme:*
 
 ``Specify the theme you would like to use``
+
 *Args:* 
 1. dark 
 2. light
