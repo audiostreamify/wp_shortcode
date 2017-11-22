@@ -13,4 +13,4 @@ border
 
 theme
 ``Specify the theme you would like to use``
-``Args: dark or light
+``Args: dark or light``
