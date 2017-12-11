@@ -6,7 +6,7 @@ Audiostreamify shortcode allows you to embed songs, albums or playlists.
 
 *src:*
 
-``The song, album or playlit url``
+``The song, album or playlist url``
 
 *border:*
 
