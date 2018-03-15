@@ -91,9 +91,13 @@ function audiostreamify_sc( $atts ) {
 		$atts,
 		'audiostreamify'
 	);
-		
+	
+	$source = $atts['src'];
 	if (mb_strpos($atts['src'],'://play') !== false) {
 		$source = str_replace("://play.audiostreamify.com", "://audiostreamify.com/embed", $atts['src']);
+	}
+	else if (mb_strpos($atts['src'],'://open') !== false) {
+		$source = 'http://audiostreamify.com/embed?track='.file_get_contents(str_replace('://open', '://uapi', $atts['src']));
 	}
 		
 	if ( $atts['border'] == "true") {
