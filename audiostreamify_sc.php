@@ -75,11 +75,11 @@ function run_audiostreamify_sc() {
 
 }
 
-function audiostreamify_sc( $atts ) {
+function audiostreamify_sc($atts) {
 	
 	$audiostreamify_sc_border = "";
 		
-	// Attributes
+	// Shortcode attributes
 	$atts = shortcode_atts(
 		array(
 			'src' => 'http://audiostreamify.com/embed/playlist/official',
@@ -92,15 +92,18 @@ function audiostreamify_sc( $atts ) {
 		'audiostreamify'
 	);
 	
+	// Check if the source URL's origin is open.audiostreamify.com or play.audiostreamify.com
 	$source = $atts['src'];
 	if (mb_strpos($atts['src'],'://play') !== false) {
 		$source = str_replace("://play.audiostreamify.com", "://audiostreamify.com/embed", $atts['src']);
 	}
 	else if (mb_strpos($atts['src'],'://open') !== false) {
+		// if the origin is open.audiostreamify.com then send a get request to uapi.audiostreamify to get the song_code
 		$uapi = str_replace('://open', '://uapi', $atts['src']);
 		$source = 'http://audiostreamify.com/embed?track='.wp_remote_get(str_replace('https://', 'http://', $uapi))['body'];
 	}
-		
+
+	// Border style settings 
 	if ( $atts['border'] == "true") {
 		if ($atts['theme'] == "light" || $atts['theme'] == "") {
 			$audiostreamify_sc_border = "border: 1px solid #eee";
@@ -122,6 +125,6 @@ function audiostreamify_sc( $atts ) {
 	
 }
 	
-add_shortcode( 'audiostreamify', 'audiostreamify_sc' );
+add_shortcode('audiostreamify', 'audiostreamify_sc');
 
 run_audiostreamify_sc();
