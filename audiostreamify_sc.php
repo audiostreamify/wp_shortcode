@@ -14,9 +14,9 @@
  *
  * @wordpress-plugin
  * Plugin Name:       Audiostreamify Shortcode
- * Plugin URI:        developer.audiostreamify.com
+ * Plugin URI:        dev.audiostreamify.com
  * Description:       Audiostreamify shortcode allows you to embed songs, albums or playlists.
- * Version:           1.0.0
+ * Version:           1.0.1
  * Author:            Donald Pakkies
  * Author URI:        https://github.com/donaldp
  * License:           GPL-2.0+
@@ -30,7 +30,7 @@ if ( ! defined( 'WPINC' ) ) {
 	die;
 }
 
-define( 'PLUGIN_NAME_VERSION', '1.0.0' );
+define( 'PLUGIN_NAME_VERSION', '1.0.1' );
 
 /**
  * The code that runs during plugin activation.
@@ -92,7 +92,9 @@ function audiostreamify_sc( $atts ) {
 		'audiostreamify'
 	);
 		
-	$source = str_replace("http://play.audiostreamify.com", "http://audiostreamify.com/embed", $atts['src']);
+	if (mb_strpos($atts['src'],'://play') !== false) {
+		$source = str_replace("://play.audiostreamify.com", "://audiostreamify.com/embed", $atts['src']);
+	}
 		
 	if ( $atts['border'] == "true") {
 		if ($atts['theme'] == "light" || $atts['theme'] == "") {
