@@ -97,7 +97,8 @@ function audiostreamify_sc( $atts ) {
 		$source = str_replace("://play.audiostreamify.com", "://audiostreamify.com/embed", $atts['src']);
 	}
 	else if (mb_strpos($atts['src'],'://open') !== false) {
-		$source = 'http://audiostreamify.com/embed?track='.file_get_contents(str_replace('://open', '://uapi', $atts['src']));
+		$uapi = str_replace('://open', '://uapi', $atts['src']);
+		$source = 'http://audiostreamify.com/embed?track='.wp_remote_get(str_replace('https://', 'http://', $uapi))['body'];
 	}
 		
 	if ( $atts['border'] == "true") {
